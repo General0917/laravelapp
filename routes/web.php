@@ -43,30 +43,30 @@ Route::get('/', function () {
 //     return $html;
 // });
 
-Route::get('hello/{msg?}', function ($msg=102) {
-    $arch_types = [
-        [ 'model_num' => 102, 'nick' => "DUEL" ],
-        [ 'model_num' => 103, 'nick' => "BUSTER" ],
-        [ 'model_num' => 105, 'nick' => "STRIKE" ],
-        [ 'model_num' => 207, 'nick' => "BLITZ" ],
-        [ 'model_num' => 303, 'nick' => "AEGIS" ]
-    ];
+Route::get('hello/{msg?}', function ($msg='no message.') {
+    // $arch_types = [
+    //     [ 'model_num' => 102, 'nick' => "DUEL" ],
+    //     [ 'model_num' => 103, 'nick' => "BUSTER" ],
+    //     [ 'model_num' => 105, 'nick' => "STRIKE" ],
+    //     [ 'model_num' => 207, 'nick' => "BLITZ" ],
+    //     [ 'model_num' => 303, 'nick' => "AEGIS" ]
+    // ];
 
-    define("TYPES", "GAT-X");
-    $search_GAT = null;
+    // define("TYPES", "GAT-X");
+    // $search_GAT = null;
 
-    foreach ($arch_types as $GAT_series) {
-        if ($GAT_series['model_num'] == $msg) {
-            $search_GAT = $GAT_series;
-            break;
-        }
-    }
+    // foreach ($arch_types as $GAT_series) {
+    //     if ($GAT_series['model_num'] == $msg) {
+    //         $search_GAT = $GAT_series;
+    //         break;
+    //     }
+    // }
 
-    if ($search_GAT) {
-        $msg = TYPES . $search_GAT['model_num'] . ' ' . $search_GAT['nick'];
-    } else {
-        $msg = 'Not a GAT series';
-    }
+    // if ($search_GAT) {
+    //     $msg = TYPES . $search_GAT['model_num'] . ' ' . $search_GAT['nick'];
+    // } else {
+    //     $msg = 'Not a GAT series';
+    // }
 
     $html = <<<EOF
     <html>
