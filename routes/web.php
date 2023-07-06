@@ -43,6 +43,7 @@ Route::get('/', function () {
 //     return $html;
 // });
 
+/*
 Route::get('hello/{msg?}', function ($msg='no message.') {
     // $arch_types = [
     //     [ 'model_num' => 102, 'nick' => "DUEL" ],
@@ -87,3 +88,8 @@ Route::get('hello/{msg?}', function ($msg='no message.') {
 
     return $html;
 });
+*/
+
+// Route::get('hello/{id?}/{pass?}', 'App\Http\Controllers\HelloController@index');
+Route::get('hello', 'App\Http\Controllers\HelloController@index');
+Route::get('hello/other', 'App\Http\Controllers\HelloController@other');
