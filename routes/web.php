@@ -91,5 +91,14 @@ Route::get('hello/{msg?}', function ($msg='no message.') {
 */
 
 // Route::get('hello/{id?}/{pass?}', 'App\Http\Controllers\HelloController@index');
+// Route::get('hello', 'App\Http\Controllers\HelloController@index');
+// Route::get('hello/other', 'App\Http\Controllers\HelloController@other');
+// Route::get('hello', 'App\Http\Controllers\HelloController');
+// Route::get('hello', 'App\Http\Controllers\HelloController@index');
+
+// Route::get('hello', function() {
+//     return view('hello.index');
+// });
+// Route::get('hello','App\Http\Controllers\HelloController@index');
+// Route::get('hello/{id?}', 'App\Http\Controllers\HelloController@index');
 Route::get('hello', 'App\Http\Controllers\HelloController@index');
-Route::get('hello/other', 'App\Http\Controllers\HelloController@other');
