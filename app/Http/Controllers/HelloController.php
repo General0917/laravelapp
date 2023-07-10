@@ -142,23 +142,24 @@ class HelloController extends Controller {
     //     return $nick;
     // }
 
-    public function index(Request $request) {
-        $data = [
-            'msg' => 'これはコントローラから渡されたメッセージです。',
-            'id' => $request->id,
-            'nick' => $this->gat_nick($request->id)
-        ];
+    // public function index(Request $request) {
+    //     $data = [
+    //         'msg' => 'これはコントローラから渡されたメッセージです。',
+    //         'id' => $request->id,
+    //         'nick' => $this->gat_nick($request->id)
+    //     ];
 
-        return view('hello.index', $data);
-    }
+    //     return view('hello.index', $data);
+    // }
 
+    /*
     public function gat_nick($id) : string {
         $arch_type = [
-            [ 'model_num' => 102, 'nick' => 'DUEL' ],
-            [ 'model_num' => 103, 'nick' => 'BUSTER' ],
-            [ 'model_num' => 105, 'nick' => 'STRIKE' ],
-            [ 'model_num' => 207, 'nick' => 'BLITZ' ],
-            [ 'model_num' => 303, 'nick' => 'AEGIS' ]
+            [ 'model_num' => 102, 'nick' => 'DUEL', 'pilot' => 'Yzak Jule' ],
+            [ 'model_num' => 103, 'nick' => 'BUSTER', 'pilot' => 'Dearka Elthman' ],
+            [ 'model_num' => 105, 'nick' => 'STRIKE', 'pilot' => 'Kira Yamato' ],
+            [ 'model_num' => 207, 'nick' => 'BLITZ', 'pilot' => 'Nicol Amarfi'],
+            [ 'model_num' => 303, 'nick' => 'AEGIS', 'pilot' => 'Athrun Zala' ]
         ];
 
         $serch_gat_result = null;
@@ -173,9 +174,131 @@ class HelloController extends Controller {
         if ($serch_gat_result) {
             $nick = $serch_gat_result['nick'];
         } else {
-            $nick = 'Not a GAT series';
+            $nick = 'Non NickName';
         }
 
         return $nick;
+    }
+
+    public function get_pilot($id) : string {
+        $arch_type = [
+            [ 'model_num' => 102, 'nick' => 'DUEL', 'pilot' => 'Yzak Jule' ],
+            [ 'model_num' => 103, 'nick' => 'BUSTER', 'pilot' => 'Dearka Elthman' ],
+            [ 'model_num' => 105, 'nick' => 'STRIKE', 'pilot' => 'Kira Yamato' ],
+            [ 'model_num' => 207, 'nick' => 'BLITZ', 'pilot' => 'Nicol Amarfi'],
+            [ 'model_num' => 303, 'nick' => 'AEGIS', 'pilot' => 'Athrun Zala' ]
+        ];
+
+        $serch_gat_result = null;
+
+        foreach ($arch_type as $gat_series) {
+            if ($gat_series['model_num'] == $id) {
+                $serch_gat_result = $gat_series;
+                break;
+            }
+        }
+
+        if ($serch_gat_result) {
+            $pilot = $serch_gat_result['pilot'];
+        } else {
+            $pilot = 'Non Pilot';
+        }
+
+        return $pilot;
+    }
+
+    public function get_model_num($id) : string {
+        $arch_type = [
+            [ 'model_num' => 102, 'nick' => 'DUEL', 'pilot' => 'Yzak Jule' ],
+            [ 'model_num' => 103, 'nick' => 'BUSTER', 'pilot' => 'Dearka Elthman' ],
+            [ 'model_num' => 105, 'nick' => 'STRIKE', 'pilot' => 'Kira Yamato' ],
+            [ 'model_num' => 207, 'nick' => 'BLITZ', 'pilot' => 'Nicol Amarfi'],
+            [ 'model_num' => 303, 'nick' => 'AEGIS', 'pilot' => 'Athrun Zala' ]
+        ];
+
+        $search_gat_result = null;
+
+        foreach ($arch_type as $gat_series) {
+            if ($gat_series['model_num'] == $id) {
+                $search_gat_result = $gat_series;
+                break;
+            }
+        }
+
+        if ($search_gat_result) {
+            $model_num = $search_gat_result['model_num'];
+        } else {
+            $model_num = 'Non model num';
+        }
+
+        return $model_num;
+    }
+    */
+
+    // public function index() {
+    //     $data = [
+    //         'msg' => 'これはBladeを利用したサンプルです。'
+    //     ];
+
+    //     return view('hello.index', $data);
+    // }
+
+    // public function index() {
+    //     $data = [
+    //         'msg' => 'お名前を入力してください。'
+    //     ];
+
+    //     return view('hello.index', $data);
+    // }
+
+    // public function post(Request $request) {
+    //     $msg = $request->msg;
+
+    //     $data = [
+    //         'msg' => 'こんにちは、' . $msg . 'さん！！'
+    //     ];
+
+    //     return view('hello.index', $data);
+    // }
+
+    // public function index(Request $request) {
+    //     $data = [
+    //         'pilot' => $this->get_pilot($request->id),
+    //         'id' => $this->get_model_num($request->id),
+    //         'nick' => $this->gat_nick($request->id)
+    //     ];
+    //     return view('hello.index', $data);
+    // }
+
+    // public function post(Request $request) {
+    //     $data = [
+    //         'pilot' => $this->get_pilot($request->id),
+    //         'id' => $this->get_model_num($request->id),
+    //         'nick' => $this->gat_nick($request->id)
+    //     ];
+    //     return view('hello.index', $data);
+    // }
+
+    // public function index() {
+    //     return view('hello.index');
+    // }
+
+    // public function post(Request $request) {
+    //     $data = [
+    //         'msg' => $request -> msg
+    //     ];
+    //     return view('hello.index', $data);
+    // }
+
+    public function index() {
+        $data = [
+            'one',
+            'two',
+            'three',
+            'four',
+            'five'
+        ];
+
+        return view('hello.index', ['data' => $data]);
     }
 }
