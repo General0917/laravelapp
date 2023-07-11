@@ -290,15 +290,31 @@ class HelloController extends Controller {
     //     return view('hello.index', $data);
     // }
 
-    public function index() {
-        $data = [
-            'one',
-            'two',
-            'three',
-            'four',
-            'five'
-        ];
+    // public function index() {
+    //     $data = [
+    //         'one',
+    //         'two',
+    //         'three',
+    //         'four',
+    //         'five'
+    //     ];
 
-        return view('hello.index', ['data' => $data]);
+    //     return view('hello.index', ['data' => $data]);
+    // }
+
+    // public function index() {
+    //     $data = [
+    //         [ 'model_num' => 102, 'nick' => 'DUEL', 'pilot' => 'Yzak Jule' ],
+    //         [ 'model_num' => 103, 'nick' => 'BUSTER', 'pilot' => 'Dearka Elthman' ],
+    //         [ 'model_num' => 105, 'nick' => 'STRIKE', 'pilot' => 'Kira Yamato' ],
+    //         [ 'model_num' => 207, 'nick' => 'BLITZ', 'pilot' => 'Nicol Amarfi'],
+    //         [ 'model_num' => 303, 'nick' => 'AEGIS', 'pilot' => 'Athrun Zala' ]
+    //     ];
+
+    //     return view('hello.index', ['data' => $data]);
+    // }
+
+    public function index() {
+        return view('hello.index', ['message' => 'Hello!!']);
     }
 }
