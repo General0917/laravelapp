@@ -121,7 +121,7 @@
 @endsection
 
 @section('content')
-    <p>ここが本文のコンテンツです。</p>
+    {{-- <p>ここが本文のコンテンツです。</p> --}}
     {{-- <p>必要なだけ記述できます。</p> --}}
 
     {{-- @component('components.message')
@@ -142,8 +142,29 @@
         @each('components.item', $data, 'item')
     </ul> --}}
 
-    <p>Controller value<br>'message' = {{$message}}</p>
-    <p>ViewComposer value<br>'view_message' = {{$view_message}}</p>
+    {{-- <p>Controller value<br>'message' = {{$message}}</p>
+    <p>ViewComposer value<br>'view_message' = {{$view_message}}</p> --}}
+
+    {{-- <table>
+        @foreach ($data as $item)
+        <tr><th>GAT-X{{$item['model_num']}}</th> <td>{{$item['nick']}}</td> <td>{{$item['pilot']}}</td></tr>
+        @endforeach
+    </table> --}}
+
+    {{-- <p>これは、<middleware>Google.com</middleware>へのリンクです。</p>
+    <p>これは、<middleware>yahoo.co.jp</middleware>へのリンクです。</p> --}}
+
+    {{-- <p>{{$msg}}</p>
+    <form method="post" action="/Practice/Laravel/laravelapp/public/hello">
+        <table>
+            @csrf
+            <tr><th>name: </th><td><input type="text" name="name"></td></tr>
+            <tr><th>mail: </th><td><input type="text" name="mail"></td></tr>
+            <tr><th>age: </th><td><input type="number" name="age"></td></tr>
+            <tr><th></th><td><input type="submit" value="send"></td></tr>
+        </table>
+    </form> --}}
+
 @endsection
 
 @section('footer')

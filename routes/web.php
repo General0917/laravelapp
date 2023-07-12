@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\HelloMiddleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -101,5 +102,12 @@ Route::get('hello/{msg?}', function ($msg='no message.') {
 // });
 // Route::get('hello','App\Http\Controllers\HelloController@index');
 // Route::get('hello/{id?}', 'App\Http\Controllers\HelloController@index');
+// Route::get('hello', 'App\Http\Controllers\HelloController@index');
+// Route::post('hello', 'App\Http\Controllers\HelloController@post');
+
+// Route::get('hello', 'App\Http\Controllers\HelloController@index')->middleware(HelloMiddleware::class);
+// Route::get('hello', 'App\Http\Controllers\HelloController@index');
+// Route::get('hello', 'App\Http\Controllers\HelloController@index')->middleware('hello');
+
 Route::get('hello', 'App\Http\Controllers\HelloController@index');
 Route::post('hello', 'App\Http\Controllers\HelloController@post');

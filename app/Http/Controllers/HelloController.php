@@ -314,7 +314,35 @@ class HelloController extends Controller {
     //     return view('hello.index', ['data' => $data]);
     // }
 
-    public function index() {
-        return view('hello.index', ['message' => 'Hello!!']);
+    // public function index() {
+    //     return view('hello.index', ['message' => 'Hello!!']);
+    // }
+
+    // public function index(Request $request) {
+    //     return view('hello.index', ['data'=>$request->data]);
+    // }
+
+    // public function index(Request $request) {
+    //     return view('hello.index');
+    // }
+
+    public function index(Request $request) {
+        $data = [
+            'msg' => 'フォームを入力：'
+        ];
+        return view('hello.index', $data);
+    }
+
+    public function post(Request $request) {
+        $validate_rule = [
+            'name' => 'required',
+            'mail' => 'email',
+            'age' => 'numeric|between:0, 150',
+        ];
+        $data = [
+            'msg' => '正しく入力されました！！'
+        ];
+        $this->validate($request, $validate_rule);
+        return view('hello.index', $data);
     }
 }
