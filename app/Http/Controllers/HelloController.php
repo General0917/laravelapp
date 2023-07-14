@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Http\Requests\HelloRequest;
 
 // global $head, $style, $body, $end;
 // $head = '<html><head>';
@@ -333,16 +334,24 @@ class HelloController extends Controller {
         return view('hello.index', $data);
     }
 
-    public function post(Request $request) {
-        $validate_rule = [
-            'name' => 'required',
-            'mail' => 'email',
-            'age' => 'numeric|between:0, 150',
-        ];
+    // public function post(Request $request) {
+    //     $validate_rule = [
+    //         'name' => 'required',
+    //         'mail' => 'email',
+    //         'age' => 'numeric|between:0, 150',
+    //     ];
+    //     $data = [
+    //         'msg' => '正しく入力されました！！'
+    //     ];
+    //     $this->validate($request, $validate_rule);
+    //     return view('hello.index', $data);
+    // }
+
+    public function post(HelloRequest $request) {
         $data = [
-            'msg' => '正しく入力されました！！'
+            'msg' => '正しく入力されました。'
         ];
-        $this->validate($request, $validate_rule);
+
         return view('hello.index', $data);
     }
 }
