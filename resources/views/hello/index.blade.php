@@ -211,13 +211,12 @@
         </table>
     </form> --}}
 
-    <p>{{$msg}}</p>
+    {{-- <p>{{$msg}}</p>
     @if (count($errors) > 0)
         <p>入力に問題があります。再入力してください。</p>
     @endif
     <form method="post" action="/Practice/Laravel/laravelapp/public/hello">
         <table>
-            @csrf
             @error('name')
                 <tr><th>ERROR:</th><td>{{$message}}</td></tr>
             @enderror
@@ -233,6 +232,21 @@
             @enderror
             <tr><th>age: </th><td><input type="number" name="age" value="{{old('age')}}"></td></tr>
 
+            <tr><th></th><td><input type="submit" value="send"></td></tr>
+        </table>
+    </form> --}}
+
+    <p>{{$msg}}</p>
+    @if (count($errors) > 0)
+        <p>入力に問題があります。再入力してください。</p>
+    @endif
+    <form method="post" action="/Practice/Laravel/laravelapp/public/hello">
+        <table>
+            @csrf
+            @if ($errors->has('msg'))
+                <tr><th>ERROR: </th><td>{{$errors->first('msg')}}</td></tr>
+            @endif
+            <tr><th>Message: </th><td><input type="text" name="msg" value="{{old('msg')}}"></td></tr>
             <tr><th></th><td><input type="submit" value="send"></td></tr>
         </table>
     </form>

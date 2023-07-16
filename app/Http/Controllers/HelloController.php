@@ -466,19 +466,45 @@ class HelloController extends Controller {
     //     return view('hello.index', $data);
     // }
 
-    public function index(Request $request) {
-        $data = [
-            'msg' => 'フォームを入力してください。'
-        ];
+    // public function index(Request $request) {
+    //     $data = [
+    //         'msg' => 'フォームを入力してください。'
+    //     ];
 
-        return view('hello.index', $data);
+    //     return view('hello.index', $data);
+    // }
+
+    // public function post(HelloRequest $request) {
+    //     $data = [
+    //         'msg' => '正しく入力されました！！'
+    //     ];
+
+    //     return view('hello.index', $data);
+    // }
+
+    public function index(Request $request) {
+        if ($request->hasCookie('msg')) {
+            $msg = 'Cookie: ' . $request->cookie('msg');
+        } else {
+            $msg = '※クッキーはありません。';
+        }
+
+        return view('hello.index', ['msg' => $msg]);
     }
 
-    public function post(HelloRequest $request) {
-        $data = [
-            'msg' => '正しく入力されました！！'
+    public function post(Request $request) {
+        $validate_rule = [
+            'msg' => 'required',
         ];
 
-        return view('hello.index', $data);
+        $this->validate($request, $validate_rule);
+
+        $msg = $request->msg;
+
+        $response = response()->view('hello.index',['msg' => '「' . $msg . '」をクッキーに保存しました。']);
+
+        $response->cookie('msg', $msg, 100);
+
+        return $response;
     }
 }
