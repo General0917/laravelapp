@@ -252,6 +252,16 @@
     </form> --}}
 
     <table>
+        {{-- <tr><th>Name</th><th>Mail</th><th>Age</th><th>CreateDate</th><th>UpdateDate</th></tr>
+        @foreach ($items as $item)
+            <tr>
+                <td>{{$item->name}}</td>
+                <td>{{$item->mail}}</td>
+                <td>{{$item->age}}</td>
+                <td>{{$item->created_at}}</td>
+                <td>{{$item->updated_at}}</td>
+            </tr>
+        @endforeach --}}
         <tr><th>Name</th><th>Mail</th><th>Age</th></tr>
         @foreach ($items as $item)
             <tr>
