@@ -50,7 +50,12 @@ class Person extends Model
     }
 
     public function board(){
-        // hasOneでDBを結合させる場合は、外部キー（主キー）を指定する！！
+        // hasOneでDBを結合させる場合は、外部キー（主キーまたは、DBフィールド）を指定する！！
         return $this->hasOne('App\Models\Board', 'id');
+    }
+
+    public function boards() {
+        // hasManyでDBを1対多で結合させる場合は、結合させたい外部キー（DBフィールド）を指定する。
+        return $this->hasMany('App\Models\Board', 'person_id');
     }
 }
