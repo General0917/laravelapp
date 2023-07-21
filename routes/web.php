@@ -152,3 +152,6 @@ Route::post('hello/rest/update', 'App\Http\Controllers\HelloController@update_re
 
 Route::get('hello/rest/delete', 'App\Http\Controllers\HelloController@delete_rest');
 Route::post('hello/rest/remove', 'App\Http\Controllers\HelloController@remove_rest');
+
+Route::get('hello/session', 'App\Http\Controllers\HelloController@ses_get');
+Route::post('hello/session', 'App\Http\Controllers\HelloController@ses_put');

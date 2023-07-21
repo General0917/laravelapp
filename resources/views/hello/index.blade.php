@@ -112,6 +112,14 @@
 </body> --}}
 
 @extends('layouts.helloapp')
+<style>
+    .pagination { font-size: 10pt; }
+    .pagination li { display: inline-block }
+    tr th a:link { color: white; }
+    tr th a:visited { color: white; }
+    tr th a:hover { color: white; }
+    tr th a:active { color: white; }
+</style>
 
 @section('title', 'Index')
 
@@ -251,8 +259,8 @@
         </table>
     </form> --}}
 
-    <table>
-        {{-- <tr><th>Name</th><th>Mail</th><th>Age</th><th>CreateDate</th><th>UpdateDate</th></tr>
+    {{-- <table>
+        <tr><th>Name</th><th>Mail</th><th>Age</th><th>CreateDate</th><th>UpdateDate</th></tr>
         @foreach ($items as $item)
             <tr>
                 <td>{{$item->name}}</td>
@@ -261,7 +269,21 @@
                 <td>{{$item->created_at}}</td>
                 <td>{{$item->updated_at}}</td>
             </tr>
-        @endforeach --}}
+        @endforeach
+    </table> --}}
+
+    {{-- <table>
+        <tr><th>Name</th><th>Mail</th><th>Age</th></tr>
+        @foreach ($items as $item)
+            <tr>
+                <td>{{$item->name}}</td>
+                <td>{{$item->mail}}</td>
+                <td>{{$item->age}}</td>
+            </tr>
+        @endforeach
+    </table> --}}
+
+    {{-- <table>
         <tr><th>Name</th><th>Mail</th><th>Age</th></tr>
         @foreach ($items as $item)
             <tr>
@@ -271,6 +293,24 @@
             </tr>
         @endforeach
     </table>
+    {{ $items->links()}} --}}
+
+    <table>
+        <tr>
+            <th><a href="/Practice/Laravel/laravelapp/public/hello?sort=name">Name</a></th>
+            <th><a href="/Practice/Laravel/laravelapp/public/hello?sort=mail">Mail</a></th>
+            <th><a href="/Practice/Laravel/laravelapp/public/hello?sort=age">Age</a></th>
+        </tr>
+        @foreach ($items as $item)
+            <tr>
+                <td>{{$item->name}}</td>
+                <td>{{$item->mail}}</td>
+                <td>{{$item->age}}</td>
+            </tr>
+        @endforeach
+    </table>
+    {{-- linksメソッドにpaginationのbladeフォーマットを指定することで、レイアウトを指定することが可能 --}}
+    {{ $items->appends(['sort' => $sort ])->links('vendor.pagination.bootstrap-4') }}
 @endsection
 
 @section('footer')
