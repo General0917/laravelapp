@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RestappController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\HelloMiddleware;
 
@@ -141,3 +142,13 @@ Route::get('board', 'App\Http\Controllers\BoardController@index');
 
 Route::get('board/add', 'App\Http\Controllers\BoardController@add');
 Route::post('board/add', 'App\Http\Controllers\BoardController@create');
+
+Route::resource('rest', RestappController::class);
+
+Route::get('hello/rest', 'App\Http\Controllers\HelloController@rest');
+
+Route::get('hello/rest/edit', 'App\Http\Controllers\HelloController@edit_rest');
+Route::post('hello/rest/update', 'App\Http\Controllers\HelloController@update_rest');
+
+Route::get('hello/rest/delete', 'App\Http\Controllers\HelloController@delete_rest');
+Route::post('hello/rest/remove', 'App\Http\Controllers\HelloController@remove_rest');

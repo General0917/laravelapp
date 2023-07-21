@@ -8,10 +8,19 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Scopes\ScopePerson;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
+/*
+テーブル名を指定しない場合は、他の名前を明示的に指定しない限り、
+クラス名を複数形の「スネークケース」にしたものが、テーブル名として使用される。
+
+スネークケースURL：https://wa3.i-3-i.info/word1180.html
+*/
 class Person extends Model
 {
     use HasFactory;
 
+    /*「guarded」変数を配列設定することによって、id以外の、要素（カラム）のみ受け渡しが可能
+       ※idカラムは「ブラックリスト」として登録される。
+    */
     protected $guarded = array('id');
 
     public static $rules = array(

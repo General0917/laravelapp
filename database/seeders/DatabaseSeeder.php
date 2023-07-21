@@ -20,7 +20,11 @@ class DatabaseSeeder extends Seeder
     //     // ]);
     // }
 
+    // public function run(): void {
+    //     $this->call(PeopleTableSeeder::class);
+    // }
+
     public function run(): void {
-        $this->call(PeopleTableSeeder::class);
+        $this->call(RestdataTableSeeder::class);
     }
 }

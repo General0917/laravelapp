@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use App\Http\Requests\HelloRequest;
 use Validator;
 use Illuminate\Support\Facades\DB;
+use App\Models\Restdata;
 
 // global $head, $style, $body, $end;
 // $head = '<html><head>';
@@ -706,4 +707,57 @@ class HelloController extends Controller {
 
         return view('hello.show', ['items' => $items]);
     }
+
+    public function rest(Request $request) {
+        return view('hello.rest');
+    }
+
+    public function edit_rest(Request $request) {
+        // $item = DB::table('restdata')->where('id', $request->id)->first();
+        $restdata = Restdata::find($request->id);
+
+        if ($request->id != null) {
+            // edit?id=primary keyの状態でURLのクエリ指定がされている場合は、編集用フォームに遷移する。
+            return view('hello.edit_rest', ['form' => $restdata]);
+        } else {
+            // editのみの場合は、登録フォームに遷移する。
+            return view('hello.rest');
+        }
+
+        // return view('hello.edit_rest', ['form' => $item]);
+    }
+
+    public function update_rest(Request $request) {
+        // トークンを削除する前に必要なデータを取得する
+        $restdata = Restdata::find($request->id);
+        $form = $request->all();
+
+        // トークンを削除
+        unset($form['_token']);
+
+        // 更新処理を行う
+        $restdata->fill($form)->save();
+
+        return redirect('/rest');
+    }
+
+    public function delete_rest(Request $request) {
+        // $item = DB::table('restdata')->where('id', $request->id)->first();
+        $restdata = Restdata::find($request->id);
+
+        if ($request->id != null) {
+            // edit?id=primary keyの状態でURLのクエリ指定がされている場合は、削除用フォームに遷移する。
+            return view('hello.delete_rest', ['form' => $restdata]);
+        } else {
+            // deleteのみの場合は、登録フォームに遷移する。
+            return view('hello.rest');
+        }
+    }
+
+    public function remove_rest(Request $request) {
+        Restdata::find($request->id)->delete();
+
+        return redirect('/rest');
+    }
+
 }
