@@ -155,3 +155,13 @@ Route::post('hello/rest/remove', 'App\Http\Controllers\HelloController@remove_re
 
 Route::get('hello/session', 'App\Http\Controllers\HelloController@ses_get');
 Route::post('hello/session', 'App\Http\Controllers\HelloController@ses_put');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('hello', 'App\Http\Controllers\HelloController@index')->middleware('auth');
+
+Route::get('hello/auth', 'App\Http\Controllers\HelloController@getAuth');
+Route::post('hello/auth', 'App\Http\Controllers\HelloController@postAuth');
+Route::get('hello/auth/logout', 'App\Http\Controllers\HelloController@getlogout');

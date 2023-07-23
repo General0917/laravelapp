@@ -295,6 +295,12 @@
     </table>
     {{ $items->links()}} --}}
 
+    @if (Auth::check())
+        <p>USER: {{$user->name . ' (' . $user->email . ')'}}</p>
+    @else
+    <p>※ログインしていません。(<a href="/Practice/Laravel/laravelapp/public/login">ログイン</a> | <a href="/Practice/Laravel/laravelapp/public/register">登録</a>)</p>
+    @endif
+
     <table>
         <tr>
             <th><a href="/Practice/Laravel/laravelapp/public/hello?sort=name">Name</a></th>
@@ -310,7 +316,8 @@
         @endforeach
     </table>
     {{-- linksメソッドにpaginationのbladeフォーマットを指定することで、レイアウトを指定することが可能 --}}
-    {{ $items->appends(['sort' => $sort ])->links('vendor.pagination.bootstrap-4') }}
+    {{-- {{ $items->appends(['sort' => $sort ])->links('vendor.pagination.bootstrap-4') }} --}}
+    {{ $items->appends(['sort' => $sort ])->links('vendor.pagination.simple-bootstrap-4') }}
 @endsection
 
 @section('footer')

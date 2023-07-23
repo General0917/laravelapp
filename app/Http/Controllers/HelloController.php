@@ -9,6 +9,7 @@ use Validator;
 use Illuminate\Support\Facades\DB;
 use App\Models\Restdata;
 use App\Models\Person;
+use Illuminate\Support\Facades\Auth;
 
 // global $head, $style, $body, $end;
 // $head = '<html><head>';
@@ -566,14 +567,28 @@ class HelloController extends Controller {
     //     return view('hello.index', $param);
     // }
 
-    public function index(Request $request) {
-        $sort = $request->sort;
+    // public function index(Request $request) {
+    //     $sort = $request->sort;
 
-        $items = Person::orderBy($sort, 'asc')->paginate(5);
+    //     $items = Person::orderBy($sort, 'asc')->paginate(5);
+
+    //     $param = [
+    //         'items' => $items,
+    //         'sort' => $sort
+    //     ];
+
+    //     return view('hello.index', $param);
+    // }
+
+    public function index(Request $request) {
+        $user = Auth::user();
+        $sort = $request->sort;
+        $items = Person::orderBy($sort, 'asc')->simplePaginate(5);
 
         $param = [
             'items' => $items,
-            'sort' => $sort
+            'sort' => $sort,
+            'user' => $user,
         ];
 
         return view('hello.index', $param);
@@ -809,4 +824,43 @@ class HelloController extends Controller {
         return redirect('hello/session');
     }
 
+    public function getAuth(Request $request) {
+        $param = [
+            'message' => 'ログインしてください。',
+            'flag' => false
+        ];
+
+        return view('hello.auth', $param);
+    }
+
+    public function postAuth(Request $request) {
+        $email = $request->email;
+        $password = $request->password;
+
+        if (Auth::attempt(['email' => $email, 'password' => $password])) {
+            $msg = 'ログインしました。(' . Auth::user()->name . ')';
+            $flag = true;
+        } else {
+            $msg = 'ログインに失敗しました。';
+            $flag = false;
+        };
+
+        $param = [
+            'message' => $msg,
+            'flag' => $flag
+        ];
+
+        return view('hello.auth', $param);
+    }
+
+    public function getlogout(Request $request) {
+        Auth::logout();
+
+        $param = [
+            'message' => 'ログアウトしました。',
+            'flag' => false,
+        ];
+
+        return view('hello.auth', $param);
+    }
 }
